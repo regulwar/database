@@ -1,0 +1,223 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 4
+Server version: 5.1.38-community MySQL Community Server (GPL)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE college;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| app1               |
+| app2               |
+| bookapi            |
+| captain            |
+| college            |
+| employee           |
+| etour              |
+| exam               |
+| function           |
+| gulnaj             |
+| hotel1             |
+| hotel2             |
+| hotels             |
+| info               |
+| khan               |
+| mayur              |
+| mydata             |
+| mydb               |
+| myemp              |
+| myexam             |
+| myhotels           |
+| myphpdb            |
+| mysql              |
+| numbers            |
+| patil              |
+| prj                |
+| project            |
+| sales              |
+| stud_data          |
+| test               |
+| vehicledb          |
+| vishal             |
+| vita               |
++--------------------+
+34 rows in set (0.00 sec)
+
+mysql> USE college;
+Database changed
+
+mysql> CREATE TABLE stud_info
+    -> (
+    -> stud_id int,
+    -> stud_name varchar(20),
+    -> stud_age int
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO stud_info VALUES (1,'PAYAL',22);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO stud_info VALUES (2,'RUPALI',23);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO stud_info VALUES (3,'DEEPTI',24);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO stud_info VALUES (4,'GAYATRI',22);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> INSERT INTO stud_info VALUES (5,'SHRADDHA',23);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT *
+    ->  FROM stud_info;
++---------+-----------+----------+
+| stud_id | stud_name | stud_age |
++---------+-----------+----------+
+|       1 | PAYAL     |       22 |
+|       2 | RUPALI    |       23 |
+|       3 | DEEPTI    |       24 |
+|       4 | GAYATRI   |       22 |
+|       5 | SHRADDHA  |       23 |
++---------+-----------+----------+
+5 rows in set (0.00 sec)
+
+
+mysql> UPDATE stud_info
+    -> SET stud_name='NEHA'
+    -> WHERE stud_id=5;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT *
+    ->  FROM stud_info;
++---------+-----------+----------+
+| stud_id | stud_name | stud_age |
++---------+-----------+----------+
+|       1 | PAYAL     |       22 |
+|       2 | RUPALI    |       23 |
+|       3 | DEEPTI    |       24 |
+|       4 | GAYATRI   |       22 |
+|       5 | NEHA      |       23 |
++---------+-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> DELETE FROM stud_info
+    -> WHERE stud_name='GAYATRI';
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT *
+    ->  FROM stud_info;
++---------+-----------+----------+
+| stud_id | stud_name | stud_age |
++---------+-----------+----------+
+|       1 | PAYAL     |       22 |
+|       2 | RUPALI    |       23 |
+|       3 | DEEPTI    |       24 |
+|       5 | NEHA      |       23 |
++---------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> DELETE FROM stud_info
+    -> WHERE stud_id IN(3,5);
+Query OK, 2 rows affected (0.03 sec)
+
+mysql> SELECT *
+    ->  FROM stud_info;
++---------+-----------+----------+
+| stud_id | stud_name | stud_age |
++---------+-----------+----------+
+|       1 | PAYAL     |       22 |
+|       2 | RUPALI    |       23 |
++---------+-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO stud_info(
+    -> stud_id,
+    -> stud_name,
+    -> stud_age
+    -> )
+    -> VALUES
+    -> (
+    -> 3,
+    -> 'NEHA',
+    -> 22
+    -> ),
+    -> (
+    -> 4,
+    -> 'GAYATRI',
+    -> 23
+    -> );
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT *
+    ->  FROM stud_info;
++---------+-----------+----------+
+| stud_id | stud_name | stud_age |
++---------+-----------+----------+
+|       1 | PAYAL     |       22 |
+|       2 | RUPALI    |       23 |
+|       3 | NEHA      |       22 |
+|       4 | GAYATRI   |       23 |
++---------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> TRUNCATE TABLE stud_info;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT *
+    ->  FROM stud_info;
+Empty set (0.00 sec)
+
+mysql> DROP TABLE stud_info;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> SELECT *
+    ->  FROM stud_info;
+ERROR 1146 (42S02): Table 'college.stud_info' doesn't exist
+
+mysql> CREATE TABLE stud_info
+    -> (
+    -> stud_id int primary key,
+    -> stud_name varchar(20),
+    -> stud_age int
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO stud_info(
+    -> stud_id,
+    -> stud_name,
+    -> stud_age
+    -> )
+    -> VALUES
+    -> (
+    -> 1,
+    -> 'PAYAL',
+    -> 22
+    -> ),
+    -> (
+    -> 2,
+    -> 'NEHA',
+    -> 22
+    -> );
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT *
+    ->  FROM stud_info;
++---------+-----------+----------+
+| stud_id | stud_name | stud_age |
++---------+-----------+----------+
+|       1 | PAYAL     |       22 |
+|       2 | NEHA      |       22 |
++---------+-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql>
